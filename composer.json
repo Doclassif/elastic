@@ -1,0 +1,45 @@
+{
+  "name": "doclassif/elastic",
+  "description": "Laravel Elastic custom formatter",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Артём Данилецкий",
+      "email": "doclassif@mail.ru"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "elasticsearch/elasticsearch": "^7.17"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^8.3",
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Doclassif\\Elastic\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Doclassif\\Elastic\\Test\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Doclassif\\Elastic\\Providers\\AppServiceProvider"
+      ]
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "post-autoload-dump": [
+      "@php vendor/bin/testbench package:discover --ansi"
+    ]
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
