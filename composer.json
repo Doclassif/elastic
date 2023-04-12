@@ -29,7 +29,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Elastic\\Custom\\Providers\\ElasticServiceProvider"
+        "Elastic\\Providers\\ElasticServiceProvider"
       ]
     }
   },
