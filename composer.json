@@ -18,18 +18,18 @@
   },
   "autoload": {
     "psr-4": {
-      "Doclassif\\Elastic\\": "src/"
+      "Elastic\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Doclassif\\Elastic\\Test\\": "tests/"
+      "Elastic\\Test\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Doclassif\\Elastic\\Providers\\ElasticServiceProvider"
+        "Elastic\\Providers\\ElasticServiceProvider"
       ]
     }
   },

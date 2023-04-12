@@ -1,7 +1,7 @@
 <?php
 
 use Monolog\Handler\ElasticsearchHandler;
-use Doclassif\Elastic\ElasticsearchFormatter;
+use Elastic\ElasticsearchFormatter;
 
 return [
 

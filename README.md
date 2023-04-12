@@ -15,7 +15,7 @@ composer test
 
 ```php
     use Monolog\Handler\ElasticsearchHandler;
-    use Elastic\Custom\ElasticsearchFormatter;
+    use Elastic\ElasticsearchFormatter;
 
     'channels' => [
 
@@ -47,4 +47,4 @@ ELASTIC_HOST=elasticsearch:9200
 ELASTIC_LOGS_INDEX=test_logs
 ```
 
-4. Выполнить ```php artisan vendor:publish``` и выбрать ```Doclassif\Elastic\Providers\ElasticServiceProvider```
+4. Выполнить ```php artisan vendor:publish``` и выбрать ```Elastic\Providers\ElasticServiceProvider```
