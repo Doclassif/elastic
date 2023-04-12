@@ -1,6 +1,6 @@
 <?php
 
-namespace Elastic\Providers;
+namespace Doclassif\Elastic\Providers;
 
 use Elasticsearch\ClientBuilder;
 use Illuminate\Support\ServiceProvider;

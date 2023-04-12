@@ -47,4 +47,4 @@ ELASTIC_HOST=elasticsearch:9200
 ELASTIC_LOGS_INDEX=test_logs
 ```
 
-4. Выполнить ```php artisan vendor:publish``` и выбрать ```Elastic\Custom\ElasticServiceProvider```
+4. Выполнить ```php artisan vendor:publish``` и выбрать ```Doclassif\Elastic\Providers\ElasticServiceProvider```
