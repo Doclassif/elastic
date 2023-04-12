@@ -29,7 +29,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Doclassif\\Elastic\\Providers\\AppServiceProvider"
+        "Doclassif\\Elastic\\Providers\\ElasticServiceProvider"
       ]
     }
   },
