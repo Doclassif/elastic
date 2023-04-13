@@ -28,8 +28,17 @@ class ElasticsearchFormatter extends Formatter
         
         
         if ($request) {
-            $record['meta']['client_ip'] = $request->ip();
-            $record['meta']['request'] = $request->all();
+            $record['meta']['request'] = [
+                "ip" => $request->ip(),
+                "method" => $request->method(),
+                "url" => $request->url(),
+                "headers" => $request->headers(),
+                "body" => $request->body(),
+                "data" => $request->data(),
+                "parameters" => $request->parameters(),
+                "json" => $request->json(),
+            ];
+      
             $record['meta']['request_full'] = $request;
         }
 
