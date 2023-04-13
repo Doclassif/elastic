@@ -20,7 +20,6 @@ return [
                 'type'  => '_doc',
             ],
             'handler_with'   => [
-                'client' => Elastic\ClientBuilder::create(),
                 'options' => [
                     'ignore_error' => env('ELASTIC_IGNORE_ERROR', true),
                 ]
