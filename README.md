@@ -14,29 +14,26 @@ composer test
 3. Добавить конфигурацию в ```config/logging.php``` (актуальная конфигурация в документации пакета)
 
 ```php
-    use Monolog\Handler\ElasticsearchHandler;
-    use Elastic\ElasticsearchFormatter;
-
+    'stack' => [
+        'driver' => 'stack',
+        'channels' => ['daily', 'elasticsearch'],
+        'ignore_exceptions' => false,
+    ],
+    
     'channels' => [
-
-        'stack' => [
-            'driver' => 'stack',
-            'channels' => ['daily', 'elasticsearch'],
-            'ignore_exceptions' => false,
-        ],
-
         'elasticsearch' => [
             'driver'         => 'monolog',
             'level'          => 'debug',
-            'handler'        => ElasticsearchHandler::class,
-            'formatter'      => ElasticsearchFormatter::class,
+            'handler'        => Elastic\ElasticsearchHandler::class,
+            'formatter'      => Elastic\ElasticsearchFormatter::class,
             'formatter_with' => [
                 'index' => env('ELASTIC_LOGS_INDEX', 'default'),
-                'type'  => '_doc'
+                'type'  => '_doc',
+                'ignore_error' => true,
             ]
         ],
-
     ],
+
 ```
 
 .env переменные
