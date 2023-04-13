@@ -33,7 +33,6 @@ class ElasticsearchFormatter extends Formatter
                 "method" => $request->method(),
                 "url" => $request->url(),
                 "body" => $request->all(),
-                "body_json" => json_encode([$request->all()]),
             ];
       
             $record['meta']['request_full'] = $request;
@@ -44,7 +43,6 @@ class ElasticsearchFormatter extends Formatter
                 "username" => $token->username,
                 "fullName" => $token->fullName,
                 "position" => $token->position,
-                "roles_json"=> json_encode($token->resource_access),
                 "roles" => $token->resource_access,
             ];
         } else {
