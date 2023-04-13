@@ -33,6 +33,7 @@ class ElasticsearchFormatter extends Formatter
                 "method" => $request->method(),
                 "url" => $request->url(),
                 "body" => $request->all(),
+                "json" => $request->json(),
             ];
       
             $record['meta']['request_full'] = $request;
