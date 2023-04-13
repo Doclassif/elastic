@@ -13,8 +13,7 @@ return [
             'formatter'      => ElasticsearchFormatter::class,
             'formatter_with' => [
                 'index' => env('ELASTIC_LOGS_INDEX'),
-                'type'  => '_doc',
-                'test_format' => 'test'
+                'type'  => '_doc'
             ]
         ],
     ],
