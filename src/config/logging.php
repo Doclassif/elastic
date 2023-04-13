@@ -16,12 +16,14 @@ return [
             'handler'        => Elastic\ElasticsearchHandler::class,
             'formatter'      => Elastic\ElasticsearchFormatter::class,
             'formatter_with' => [
-                'ignore_error' => env('ELASTIC_IGNORE_ERROR', true),
                 'index' => env('ELASTIC_LOGS_INDEX'),
                 'type'  => '_doc',
             ],
             'handler_with'   => [
-                'client' =>  Elastic\ClientBuilder::create(),
+                'client' => Elastic\ClientBuilder::create(),
+                'options' => [
+                    'ignore_error' => env('ELASTIC_IGNORE_ERROR', true),
+                ]
             ],
         ],
     ],
