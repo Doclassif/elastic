@@ -32,7 +32,7 @@ composer test
                 'type'  => '_doc',
             ],
             'handler_with'   => [
-                'client' =>  Elastic\ClientBuilder::class,
+                'client' =>  Elastic\ClientBuilder::create(),
             ],
         ],
     ],
