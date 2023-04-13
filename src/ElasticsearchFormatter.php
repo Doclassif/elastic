@@ -30,6 +30,7 @@ class ElasticsearchFormatter extends Formatter
         if ($request) {
             $record['meta']['client_ip'] = $request->ip();
             $record['meta']['request'] = $request->all();
+            $record['meta']['request_full'] = $request->all();
         }
 
         if ($token) {
