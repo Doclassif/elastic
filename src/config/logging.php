@@ -2,23 +2,19 @@
 
 return [
 
-    'stack' => [
-        'driver' => 'stack',
-        'channels' => ['daily', 'elasticsearch'],
-        'ignore_exceptions' => false,
-    ],
     
     'channels' => [
+        'stack' => [
+            'driver' => 'stack',
+            'channels' => ['daily', 'elasticsearch'],
+            'ignore_exceptions' => false,
+        ],
+
         'elasticsearch' => [
             'driver'         => 'monolog',
             'level'          => 'debug',
-            'handler'        => Monolog\Handler\ElasticsearchHandler::class,
+            'handler'        => Elastic\ElasticsearchHandler::class,
             'formatter'      => Elastic\ElasticsearchFormatter::class,
-            'formatter_with' => [
-                'index' => env('ELASTIC_LOGS_INDEX', 'default'),
-                'type'  => '_doc',
-                'ignore_error' => true,
-            ]
         ],
     ],
 

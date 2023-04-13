@@ -15,7 +15,7 @@ class ElasticServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->makeElasticHandler();
+
     }
 
     /**
@@ -30,20 +30,4 @@ class ElasticServiceProvider extends ServiceProvider
         );
     }
 
-    /**
-     * Регистрация Elasticsearch логера
-     *
-     * @return void
-     */
-    public function makeElasticHandler()
-    {
-        $this->app->bind(ElasticsearchHandler::class, function ($app) {
-            return new ElasticsearchHandler(ClientBuilder::create()->setHosts([env('ELASTIC_HOST', "http://elasticsearch:9200/")])->build(), 
-            [
-                'index' => env('ELASTIC_LOGS_INDEX', 'default'),
-                'type'  => '_doc',
-                'ignore_error' => true,
-            ]);
-        });
-    }
 }
