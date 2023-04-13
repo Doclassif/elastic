@@ -38,7 +38,12 @@ class ElasticServiceProvider extends ServiceProvider
     public function makeElasticHandler()
     {
         $this->app->bind(ElasticsearchHandler::class, function ($app) {
-            return new ElasticsearchHandler(ClientBuilder::create()->setHosts([env('ELASTIC_HOST', "http://elasticsearch:9200/")])->build());
+            return new ElasticsearchHandler(ClientBuilder::create()->setHosts([env('ELASTIC_HOST', "http://elasticsearch:9200/")])->build(), 
+            [
+                'index' => env('ELASTIC_LOGS_INDEX', 'default'),
+                'type'  => '_doc',
+                'ignore_error' => true,
+            ]);
         });
     }
 }
