@@ -18,26 +18,39 @@ class ElasticsearchFormatter extends Formatter
         return $this->getDocument($record);
     }
 
-    public function addDetails(array $record) {
+    public function addDetails(array $record)
+    {
 
         $record['meta'] = [];
 
         $request = request();
         $token = Auth::user()?->token;
-
-        if($request) {
+        
+        
+        if ($request) {
             $record['meta']['client_ip'] = $request->ip();
             $record['meta']['request'] = $request;
         }
 
-        if($token){
+        if ($token) {
             $record['meta']['user'] = [
                 "username" => $token->username,
                 "fullName" => $token->fullName,
                 "position" => $token->position,
                 "roles" => $token->resource_access,
             ];
+        } else {
+            $record['meta']['user'] = [
+                "username" => "anonymous"
+            ];
         }
+
+        $record['meta']['app'] = [
+            "name" => config('app.name'),
+            "env" => config('app.env'),
+            "url" => config('app.url'),
+            "tag" => config('app.tag'),
+        ];
 
         return $record;
     }
