@@ -21,7 +21,7 @@ return [
                 'type'  => '_doc',
             ],
             'handler_with'   => [
-                'client' => Elasticsearch\ClientBuilder::create()->setHosts([env('ELASTIC_HOST', "http://elasticsearch:9200/")])->build(),
+                'client' =>  Elastic\ClientBuilder::class,
             ],
         ],
     ],

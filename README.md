@@ -14,23 +14,26 @@ composer test
 3. Добавить конфигурацию в ```config/logging.php``` (актуальная конфигурация в документации пакета)
 
 ```php
-    'stack' => [
-        'driver' => 'stack',
-        'channels' => ['daily', 'elasticsearch'],
-        'ignore_exceptions' => false,
-    ],
-    
-    'channels' => [
+     'channels' => [
+        'stack' => [
+            'driver' => 'stack',
+            'channels' => ['daily', 'elasticsearch'],
+            'ignore_exceptions' => false,
+        ],
+
         'elasticsearch' => [
             'driver'         => 'monolog',
             'level'          => 'debug',
-            'handler'        => Elastic\ElasticsearchHandler::class::class,
+            'handler'        => Elastic\ElasticsearchHandler::class,
             'formatter'      => Elastic\ElasticsearchFormatter::class,
             'formatter_with' => [
-                'index' => env('ELASTIC_LOGS_INDEX', 'default'),
+                'ignore_error' => env('ELASTIC_IGNORE_ERROR', true),
+                'index' => env('ELASTIC_LOGS_INDEX'),
                 'type'  => '_doc',
-                'ignore_error' => true,
-            ]
+            ],
+            'handler_with'   => [
+                'client' =>  Elastic\ClientBuilder::class,
+            ],
         ],
     ],
 
