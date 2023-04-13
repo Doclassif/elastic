@@ -12,7 +12,7 @@ return [
             'handler'        => ElasticsearchHandler::class,
             'formatter'      => ElasticsearchFormatter::class,
             'formatter_with' => [
-                'index' => env('ELASTIC_LOGS_INDEX'),
+                'index' => env('ELASTIC_LOGS_INDEX', 'default'),
                 'type'  => '_doc'
             ]
         ],
