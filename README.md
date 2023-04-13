@@ -24,7 +24,7 @@ composer test
         'elasticsearch' => [
             'driver'         => 'monolog',
             'level'          => 'debug',
-            'handler'        => Elastic\ElasticsearchHandler::class,
+            'handler'        => Monolog\Handler\ElasticsearchHandler::class,
             'formatter'      => Elastic\ElasticsearchFormatter::class,
             'formatter_with' => [
                 'index' => env('ELASTIC_LOGS_INDEX', 'default'),
