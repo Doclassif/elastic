@@ -16,7 +16,7 @@ class ElasticsearchHandler extends Handler
             [
                 'index' => env('ELASTIC_LOGS_INDEX', 'default'),
                 'type'  => '_doc',
-                'ignore_error' => true,    // Suppress Elasticsearch exceptions
+                'ignore_error' => env('ELASTIC_IGNORE_ERROR', true),    // Suppress Elasticsearch exceptions
                 'op_type'      => 'index',   // Elastic op_type (index or create) (https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html#docs-index-api-op_type)
             ];
 
