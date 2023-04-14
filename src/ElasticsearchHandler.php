@@ -3,7 +3,7 @@
 namespace Kali\Elastic;
 
 use Monolog\Handler\ElasticsearchHandler as Handler;
-use Monolog\Level;
+use Monolog\Logger;
 use Elasticsearch\Client;
 use Elastic\Elasticsearch\Client as Client8;
 
@@ -12,7 +12,7 @@ class ElasticsearchHandler extends Handler
 {
     private $needsType;
 
-    public function __construct(array $client, array $options = [], $level = Level::Debug, bool $bubble = true)
+    public function __construct(array $client, array $options = [], $level = Logger::Debug, bool $bubble = true)
     {
         AbstractHandler::boot($level, $bubble);
 
