@@ -13,12 +13,14 @@ class ElasticsearchHandler extends Handler
 
     public function __construct(array $client, array $options = [], $level = Level::Debug, bool $bubble = true)
     {
-        if (!$client instanceof Client && !$client instanceof Client8) {
+        AbstractHandler::boot($level, $bubble);
+
+        $this->client = ClientBuilder::create($client);
+
+        if (!$this->client instanceof Client && !$this->client instanceof Client8) {
             throw new \TypeError('Elasticsearch\Client or Elastic\Elasticsearch\Client instance required');
         }
 
-        AbstractHandler::boot($level, $bubble);
-        $this->client = ClientBuilder::create($client);
         $this->options = array_merge(
             [
                 'index'        => 'monolog', // Elastic index name
