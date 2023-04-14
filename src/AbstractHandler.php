@@ -11,5 +11,6 @@ abstract class AbstractHandler extends Handler
         parent::$level = Logger::toMonologLevel($level);
         parent::$bubble = $bubble;
     }
-    
+
+    abstract protected function write(array $record): void;
 }
