@@ -14,7 +14,7 @@ class ElasticsearchHandler extends Handler
 
     public function __construct(array $hosts, array $options = [], $level = Logger::DEBUG, bool $bubble = true)
     {
-        AbstractHandler::boot($level, $bubble);
+        //AbstractHandler::boot($level, $bubble);
 
         $this->client = ClientBuilder::create()->setHosts($hosts)->build();
 
