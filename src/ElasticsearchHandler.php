@@ -6,17 +6,17 @@ use Monolog\Handler\ElasticsearchHandler as Handler;
 use Monolog\Logger;
 use Elasticsearch\Client;
 use Elastic\Elasticsearch\Client as Client8;
-
+use Elastic\Elasticsearch\ClientBuilder;
 
 class ElasticsearchHandler extends Handler
 {
     private $needsType;
 
-    public function __construct(array $client, array $options = [], $level = Logger::DEBUG, bool $bubble = true)
+    public function __construct(array $hosts, array $options = [], $level = Logger::DEBUG, bool $bubble = true)
     {
         AbstractHandler::boot($level, $bubble);
 
-        $this->client = ClientBuilder::create($client);
+        $this->client = ClientBuilder::create()->setHosts($hosts)->build();
 
         if (!$this->client instanceof Client && !$this->client instanceof Client8) {
             throw new \TypeError('Elasticsearch\Client or Elastic\Elasticsearch\Client instance required');

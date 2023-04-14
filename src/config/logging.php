@@ -18,7 +18,7 @@ return [
                 'type'  => '_doc',
             ],
             'handler_with'   => [
-                'client' => [env('ELASTIC_HOST', "http://elasticsearch:9200/")],
+                'hosts' => [env('ELASTIC_HOST', "http://elasticsearch:9200/")],
                 'options' => [
                     'ignore_error' => env('ELASTIC_IGNORE_ERROR', true),
                 ]
