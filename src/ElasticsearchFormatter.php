@@ -1,6 +1,6 @@
 <?php
 
-namespace Elastic;
+namespace Kali\Elastic;
 
 use Illuminate\Support\Facades\Auth;
 use Monolog\Formatter\ElasticsearchFormatter as Formatter;

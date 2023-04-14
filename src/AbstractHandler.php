@@ -1,6 +1,6 @@
 <?php
 
-namespace Elastic;
+namespace Kali\Elastic;
 
 use Monolog\Level;
 use Monolog\Logger;

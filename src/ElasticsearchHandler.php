@@ -1,6 +1,6 @@
 <?php
 
-namespace Elastic;
+namespace Kali\Elastic;
 
 use Monolog\Handler\ElasticsearchHandler as Handler;
 use Monolog\Level;
@@ -24,7 +24,7 @@ class ElasticsearchHandler extends Handler
             $options
         );
 
-        if ($client instanceof Client8 || $client::VERSION[0] === '7') {
+        if ($this->client instanceof Client8 || $this->client::VERSION[0] === '7') {
             $this->needsType = false;
             // force the type to _doc for ES8/ES7
             $this->options['type'] = '_doc';

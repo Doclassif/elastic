@@ -1,9 +1,9 @@
 <?php
 
-namespace Elastic;
-use Elasticsearch\ClientBuilder as ElasticClient;
+namespace Kali\Elastic;
+use Elastic\Elasticsearch\ClientBuilder as ElasticClient;
 
-use Elasticsearch\Client;
+use Elastic\Elasticsearch\Client;
 use Elastic\Elasticsearch\Client as Client8;
 
 class ClientBuilder 

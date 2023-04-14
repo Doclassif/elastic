@@ -13,8 +13,8 @@ return [
         'elasticsearch' => [
             'driver'         => 'monolog',
             'level'          => 'debug',
-            'handler'        => Elastic\ElasticsearchHandler::class,
-            'formatter'      => Elastic\ElasticsearchFormatter::class,
+            'handler'        => Kali\Elastic\ElasticsearchHandler::class,
+            'formatter'      => Kali\Elastic\ElasticsearchFormatter::class,
             'formatter_with' => [
                 'index' => env('ELASTIC_LOGS_INDEX'),
                 'type'  => '_doc',

@@ -1,10 +1,8 @@
 <?php
 
-namespace Elastic\Providers;
+namespace Kali\Elastic\Providers;
 
-use Elasticsearch\ClientBuilder;
 use Illuminate\Support\ServiceProvider;
-use Monolog\Handler\ElasticsearchHandler;
 
 class ElasticServiceProvider extends ServiceProvider
 {

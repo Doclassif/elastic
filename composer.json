@@ -10,7 +10,7 @@
   ],
   "minimum-stability": "stable",
   "require": {
-    "elasticsearch/elasticsearch": "^7.17"
+    "elasticsearch/elasticsearch": "8.7.0"
   },
   "require-dev": {
     "orchestra/testbench": "^8.3",
@@ -18,18 +18,18 @@
   },
   "autoload": {
     "psr-4": {
-      "Elastic\\": "src/"
+      "Kali\\Elastic\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Elastic\\Test\\": "tests/"
+      "Kali\\Elastic\\Test\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Elastic\\Providers\\ElasticServiceProvider"
+        "Kali\\Elastic\\Providers\\ElasticServiceProvider"
       ]
     }
   },
@@ -40,6 +40,9 @@
     ]
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
   }
 }
