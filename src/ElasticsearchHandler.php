@@ -4,6 +4,7 @@ namespace Kali\Elastic;
 
 use Monolog\Handler\ElasticsearchHandler as Handler;
 use Monolog\Level;
+use Elasticsearch\Client;
 use Elastic\Elasticsearch\Client as Client8;
 
 

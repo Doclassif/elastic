@@ -1,7 +1,6 @@
 <?php
 
 return [
-    
     'channels' => [
         'stack' => [
             'driver' => 'stack',
