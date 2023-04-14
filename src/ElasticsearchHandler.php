@@ -10,7 +10,7 @@ use Elastic\Elasticsearch\ClientBuilder;
 
 class ElasticsearchHandler extends Handler
 {
-    private $needsType;
+    public $needsType;
 
     public function __construct(array $hosts, array $options = [], $level = Logger::DEBUG, bool $bubble = true)
     {
