@@ -12,7 +12,7 @@ class ElasticsearchHandler extends Handler
 {
     private $needsType;
 
-    public function __construct(array $client, array $options = [], $level = Logger::Debug, bool $bubble = true)
+    public function __construct(array $client, array $options = [], $level = Logger::DEBUG, bool $bubble = true)
     {
         AbstractHandler::boot($level, $bubble);
 
