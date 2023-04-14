@@ -1,11 +1,14 @@
 <?php
 
 namespace Elastic;
-use Elasticsearch\ClientBuilder as Client;
+use Elasticsearch\ClientBuilder as ElasticClient;
+
+use Elasticsearch\Client;
+use Elastic\Elasticsearch\Client as Client8;
 
 class ClientBuilder 
 {
-    public static function create() {
-        return Client::create()->setHosts([env('ELASTIC_HOST', "http://elasticsearch:9200/")])->build();
+    public static function create(array $client): Client|Client8 {
+        return ElasticClient::create()->setHosts($client)->build();
     }
 }
