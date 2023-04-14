@@ -3,13 +3,13 @@
 namespace Kali\Elastic;
 
 use Monolog\Logger;
-use Monolog\Handler\AbstractHandler as Handler;
+use Monolog\Handler\AbstractProcessingHandler as Handler;
 
 abstract class AbstractHandler extends Handler
 {
     public static function boot($level = Logger::DEBUG, bool $bubble = true) {
-        self::$level = Logger::toMonologLevel($level);
-        self::$bubble = $bubble;
+        parent::$level = Logger::toMonologLevel($level);
+        parent::$bubble = $bubble;
     }
     
 }
