@@ -11,8 +11,12 @@ class ElasticsearchHandler extends Handler
 {
     private $needsType;
 
-    public function __construct(array $client, array $options = [], int|string|Level $level = Level::Debug, bool $bubble = true)
+    public function __construct(array $client, array $options = [], $level = Level::Debug, bool $bubble = true)
     {
+        if (!$client instanceof Client && !$client instanceof Client8) {
+            throw new \TypeError('Elasticsearch\Client or Elastic\Elasticsearch\Client instance required');
+        }
+
         AbstractHandler::boot($level, $bubble);
         $this->client = ClientBuilder::create($client);
         $this->options = array_merge(
