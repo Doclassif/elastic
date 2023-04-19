@@ -17,7 +17,7 @@ composer test
      'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily', 'elasticsearch'],
+            'channels' => ['stdout', 'daily', 'elasticsearch'],
             'ignore_exceptions' => false,
         ],
 
