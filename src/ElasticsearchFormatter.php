@@ -10,7 +10,7 @@ class ElasticsearchFormatter extends Formatter
     /**
      * {@inheritDoc}
      */
-    public function format(array|LogRecord $record)
+    public function format(LogRecord $record)
     {
         $record = $this->addDetails($record);
         $record = parent::format($record);
@@ -18,7 +18,7 @@ class ElasticsearchFormatter extends Formatter
         return $this->getDocument($record);
     }
 
-    public function addDetails(array|LogRecord $record)
+    public function addDetails(LogRecord $record)
     {
 
         $record['meta'] = [];
