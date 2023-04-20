@@ -5,7 +5,7 @@ namespace Kali\Elastic;
 use Monolog\LogRecord as DefaultLogRecord;
 use Monolog\Level;
 
-class LogRecord implements DefaultLogRecord
+class LogRecord extends DefaultLogRecord
 {
     private const MODIFIABLE_FIELDS = [
         'extra' => true,
@@ -88,7 +88,7 @@ class LogRecord implements DefaultLogRecord
 
         return $copy;
     }
-    
+
     public function offsetUnset(mixed $offset): void
     {
         throw new \LogicException('Unsupported operation');
