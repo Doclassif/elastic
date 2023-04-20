@@ -19,7 +19,7 @@ class ElasticsearchFormatter extends Formatter
         return $this->getDocument($record);
     }
 
-    public function addDetails(array $record)
+    public function addDetails(array|LogRecord $record)
     {
 
         $record['meta'] = [];
