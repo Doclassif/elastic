@@ -3,7 +3,7 @@
 namespace Kali\Elastic;
 
 use Monolog\LogRecord as DefaultLogRecord;
-
+use Monolog\Level;
 
 class LogRecord implements DefaultLogRecord
 {
@@ -44,7 +44,7 @@ class LogRecord implements DefaultLogRecord
                 throw new \InvalidArgumentException('meta must be an array');
             }
 
-            $this->extra = $value;
+            $this->meta = $value;
 
             return;
         }
@@ -66,7 +66,29 @@ class LogRecord implements DefaultLogRecord
 
         return isset($this->{$offset});
     }
+    public function &offsetGet(mixed $offset): mixed
+    {
+        if ($offset === 'level_name' || $offset === 'level') {
+            // avoid returning readonly props by ref as this is illegal
+            if ($offset === 'level_name') {
+                $copy = $this->level->getName();
+            } else {
+                $copy = $this->level->value;
+            }
 
+            return $copy;
+        }
+
+        if (isset(self::MODIFIABLE_FIELDS[$offset])) {
+            return $this->{$offset};
+        }
+
+        // avoid returning readonly props by ref as this is illegal
+        $copy = $this->{$offset};
+
+        return $copy;
+    }
+    
     public function offsetUnset(mixed $offset): void
     {
         throw new \LogicException('Unsupported operation');
