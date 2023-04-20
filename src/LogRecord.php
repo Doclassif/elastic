@@ -82,7 +82,7 @@ class LogRecord implements DefaultLogRecord
             'channel' => $this->channel,
             'datetime' => $this->datetime,
             'extra' => $this->extra,
-            'meta' => $this->extra,
+            'meta' => $this->meta,
         ];
     }
 
