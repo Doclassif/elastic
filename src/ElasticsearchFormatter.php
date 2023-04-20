@@ -4,13 +4,14 @@ namespace Kali\Elastic;
 
 use Illuminate\Support\Facades\Auth;
 use Monolog\Formatter\ElasticsearchFormatter as Formatter;
+use Monolog\LogRecord;
 
 class ElasticsearchFormatter extends Formatter
 {
     /**
      * {@inheritDoc}
      */
-    public function format(array $record)
+    public function format(array|LogRecord $record)
     {
         $record = $this->addDetails($record);
         $record = parent::format($record);
