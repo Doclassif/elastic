@@ -13,9 +13,10 @@ class ElasticsearchFormatter extends Formatter
     public function format(array $record)
     {
         $record = $this->addDetails($record);
+
         $record = parent::format($record);
 
-        return $this->getDocument($record);
+        return $record;
     }
 
     public function addDetails(array $record)
