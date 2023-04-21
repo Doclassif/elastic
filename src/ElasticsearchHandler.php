@@ -27,6 +27,7 @@ class ElasticsearchHandler extends Handler
                 'index'        => 'monolog', // Elastic index name
                 'type'         => '_doc',    // Elastic document type
                 'ignore_error' => false,     // Suppress Elasticsearch exceptions
+                'op_type'      => 'index',   // Elastic op_type (index or create)
             ],
             $options
         );
