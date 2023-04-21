@@ -12,23 +12,24 @@ class ElasticsearchFormatter extends Formatter
      */
     public function format(LogRecord $record)
     {
-        $record = $this->addDetails($record);
+        $record->offsetSet('extra',$this->addDetails());
+        
         $record = parent::format($record);
 
-        return $this->getDocument($record);
+        return $record;
     }
 
-    public function addDetails(LogRecord $record)
+    public function addDetails()
     {
 
-        $record['extra'] = [];
+        $record = [];
 
         $request = request();
         $token = Auth::user()?->token;
 
 
         if ($request) {
-            $record['extra']['request'] = [
+            $record['request'] = [
                 "ip" => $request->ip(),
                 "method" => $request->method(),
                 "url" => $request->url(),
@@ -36,11 +37,11 @@ class ElasticsearchFormatter extends Formatter
                 "body_json" => json_encode($request->all()),
             ];
 
-            $record['extra']['request_full'] = $request;
+            $record['request_full'] = $request;
         }
 
         if ($token) {
-            $record['extra']['user'] = [
+            $record['user'] = [
                 "username" => $token->username,
                 "fullName" => $token->fullName,
                 "position" => $token->position,
@@ -48,12 +49,12 @@ class ElasticsearchFormatter extends Formatter
                 "roles_json"=> json_encode($token->resource_access),
             ];
         } else {
-            $record['extra']['user'] = [
+            $record['user'] = [
                 "username" => "anonymous"
             ];
         }
 
-        $record['extra']['app'] = [
+        $record['app'] = [
             "name" => config('app.name'),
             "env" => config('app.env'),
             "url" => config('app.url'),
