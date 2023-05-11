@@ -11,7 +11,7 @@
   "minimum-stability": "stable",
   "require": {
     "monolog/monolog": "^2.0",
-    "elasticsearch/elasticsearch": "8.7.0"
+    "elasticsearch/elasticsearch": "^8.7"
   },
   "require-dev": {
     "orchestra/testbench": "^8.3",
