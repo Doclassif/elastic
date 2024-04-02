@@ -27,6 +27,12 @@ class ElasticsearchFormatter extends Formatter
         $request = request();
         $token = Auth::user()?->token;
 
+        $ignore_keys = config('logging.channels.elasticsearch.formatter_ignore_request_keys', ['password', 'password_confirmation']);
+        if (array_is_list($ignore_keys)) {
+            foreach ($ignore_keys as $key) {
+                unset($request_all[$key]);
+            }
+        }
 
         if ($request) {
             $record['extra']['request'] = [
