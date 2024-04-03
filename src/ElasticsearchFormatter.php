@@ -21,11 +21,10 @@ class ElasticsearchFormatter extends Formatter
 
     public function addDetails(array $record)
     {
-
         $record['extra'] = [];
 
         $request = request();
-        $token = Auth::user()?->token;
+        $request_all = $request->all();
 
         $ignore_keys = config('logging.channels.elasticsearch.formatter_ignore_request_keys', ['password', 'password_confirmation']);
         if (array_is_list($ignore_keys)) {
@@ -39,32 +38,40 @@ class ElasticsearchFormatter extends Formatter
                 "ip" => $request->ip(),
                 "method" => $request->method(),
                 "url" => $request->url(),
-                "body" => $request->all(),
-                "body_json" => json_encode($request->all()),
+                "body" => $request_all,
             ];
-
-            $record['extra']['request_full'] = $request;
         }
 
-        if ($token) {
-            $record['extra']['user'] = [
-                "username" => $token->username,
-                "fullName" => $token->fullName,
-                "position" => $token->position,
-                "roles" => $token->resource_access,
-                "roles_json"=> json_encode($token->resource_access),
-            ];
-        } else {
-            $record['extra']['user'] = [
-                "username" => "anonymous"
-            ];
+        if (Auth::getDefaultDriver() === 'api' && config('auth.guards.api.driver') === 'keycloak') {
+            try {
+                $token = json_decode(Auth::token());
+
+                if ($token) {
+                    $record['extra']['user'] = [
+                        "username" => $token->username,
+                        "fullName" => $token->fullName,
+                        "position" => $token->position,
+                        "roles" => $token->resource_access,
+                        "roles_json" => json_encode($token->resource_access),
+                    ];
+                } else {
+                    $record['extra']['user'] = [
+                        "username" => "anonymous"
+                    ];
+                }
+
+            } catch (\Throwable $th) {
+                $record['extra']['user'] = [
+                    "token_exception_message" => $th->getMessage(),
+                ];
+            }
         }
 
         $record['extra']['app'] = [
             "name" => config('app.name'),
             "env" => config('app.env'),
             "url" => config('app.url'),
-            "tag" => env('CI_COMMIT_TAG',"version is not committed"),
+            "tag" => env('CI_COMMIT_TAG', "version is not committed"),
         ];
 
         return $record;
