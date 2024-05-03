@@ -49,11 +49,11 @@ class ElasticsearchFormatter extends Formatter
 
                 if ($token) {
                     $record['extra']['user'] = [
-                        "username" => $token->username,
-                        "fullName" => $token->fullName,
-                        "position" => $token->position,
-                        "roles" => $token->resource_access,
-                        "roles_json" => json_encode($token->resource_access),
+                        "username" => $token?->username,
+                        "fullName" => $token?->fullName,
+                        "position" => $token?->position,
+                        "roles" => $token?->resource_access,
+                        "roles_json" => json_encode($token?->resource_access),
                     ];
                 } else {
                     $record['extra']['user'] = [
