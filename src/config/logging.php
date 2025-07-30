@@ -10,7 +10,6 @@ return [
 
         'elasticsearch' => [
             'driver' => 'monolog',
-            'level' => 'debug',
             'handler' => Kali\Elastic\ElasticsearchHandler::class,
             'formatter' => Kali\Elastic\ElasticsearchFormatter::class,
             'formatter_with' => [
@@ -21,7 +20,8 @@ return [
                 'hosts' => [env('ELASTIC_HOST', "http://elasticsearch:9200/")],
                 'options' => [
                     'ignore_error' => env('ELASTIC_IGNORE_ERROR', true),
-                ]
+                ],
+                'level' => env('LOG_LEVEL', env('APP_DEBUG', false) ? 'debug' : 'info'),
             ],
             'formatter_ignore_request_keys' => [] 
         ],
