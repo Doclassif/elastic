@@ -25,16 +25,27 @@ class ElasticsearchFormatter extends Formatter
         $record = [];
 
         $request = request();
-        $request_all = $request->all();
+        
+        try
+        {
+            $request_all = $request->except(array_keys($request->allFiles()));
+        }
+        catch (\Throwable $e)
+        {
+            $request_all = [];
+        }
 
         $ignore_keys = config('logging.channels.elasticsearch.formatter_ignore_request_keys', ['password', 'password_confirmation']);
-        if (array_is_list($ignore_keys)) {
-            foreach ($ignore_keys as $key) {
+        if (array_is_list($ignore_keys))
+        {
+            foreach ($ignore_keys as $key)
+            {
                 unset($request_all[$key]);
             }
         }
 
-        if ($request) {
+        if ($request)
+        {
             $record['request'] = [
                 "ip" => $request->ip(),
                 "method" => $request->method(),
@@ -43,11 +54,14 @@ class ElasticsearchFormatter extends Formatter
             ];
         }
 
-        if (Auth::getDefaultDriver() === 'api' && config('auth.guards.api.driver') === 'keycloak') {
-            try {
+        if (Auth::getDefaultDriver() === 'api' && config('auth.guards.api.driver') === 'keycloak')
+        {
+            try
+            {
                 $token = json_decode(Auth::token());
 
-                if ($token) {
+                if ($token)
+                {
                     $record['extra']['user'] = [
                         "username" => $token?->username,
                         "fullName" => $token?->fullName,
@@ -55,13 +69,17 @@ class ElasticsearchFormatter extends Formatter
                         "roles" => $token?->resource_access,
                         "roles_json" => json_encode($token?->resource_access),
                     ];
-                } else {
+                }
+                else
+                {
                     $record['extra']['user'] = [
                         "username" => "anonymous"
                     ];
                 }
 
-            } catch (\Throwable $th) {
+            }
+            catch (\Throwable $th)
+            {
                 $record['extra']['user'] = [
                     "token_exception_message" => $th->getMessage(),
                 ];
